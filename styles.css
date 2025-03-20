@@ -1,0 +1,232 @@
+:root {
+    --primary-color: #660033;
+    --secondary-color: #ff0000;
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --neon-red: #ff3333;
+    --neon-glow: 0 0 10px #ff3333, 0 0 20px #ff3333, 0 0 30px #ff3333;
+    --drip-color: #8b0a1a;
+}
+
+body {
+    font-family: 'Creepster', arial;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    background-image: url('background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: auto;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--neon-red);
+    text-shadow: var(--neon-glow);
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 2px solid var(--drip-color);
+}
+
+h1 {
+    margin: 0;
+    text-shadow: var(--neon-glow);
+}
+
+main {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: rgba(26, 26, 26, 0.8);
+    border: 1px solid #333333;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.word-tile {
+    background-color: #1a1a1a;
+    border: 2px solid #660033;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: var(--neon-red);
+    text-shadow: var(--neon-glow);
+    font-family: 'Creepster', cursive;
+}
+
+.word-tile.selected {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 0 10px var(--drip-color);
+}
+
+#feedback {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    text-shadow: 0 0 5px var(--drip-color);
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: var(--background-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #333333;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 0.5rem;
+    }
+
+    #game-board {
+        gap: 0.5rem;
+    }
+
+    .word-tile {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+.drip-effect {
+    position: absolute;
+    width: 5px;
+    height: 20px;
+    background-color: var(--drip-color);
+    border-radius: 50%;
+    animation: drip 5s linear infinite;
+}
+
+.drip1 {
+    top: 10%;
+    left: 20%;
+}
+
+.drip2 {
+    top: 30%;
+    left: 60%;
+}
+
+.drip3 {
+    top: 50%;
+    left: 40%;
+}
+
+.drip4 {
+    top: 70%;
+    left: 80%;
+}
+
+.drip5 {
+    top: 90%;
+    left: 10%;
+}
+
+@keyframes drip {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(120vh);
+        opacity: 0;
+    }
+}
+
+.error-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 2;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 4px #000000;
+    display: none;
+}
+
+#win-loss-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 3;
+}
+
+#win-loss-modal .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-color);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 2em;
+    color: var(--neon-red);
+    text-shadow: var(--neon-glow);
+}
